@@ -32,17 +32,5 @@
 
  ## Запуск тестового приложения
 в IDEA 
-### Для формирования отчета MySQL
-- открываем в терминале (+) новую вкладку и вводим команду ./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app" "-Ddb.user=app" "-Ddb.password=pass"
-- После прохождения тестов в терминале вводим команду ./gradlew allureServe
-Автоматически откроется браузер с генерированным отчетом Allure Report. 
-После работы с отчетом Allure нажимаем ctl + C
-- 
-### Для формирования отчета postgresql
-- В файле application.properties  в строке spring.datasource.url прописываем jdbc:postgresql://localhost:5432/app
-- открываем новую вкладку в терминале java -jar aqa-shop.jar
-- открываем в терминале (+) новую вкладку и вводим команду  ./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app" "-Ddb.user=app" "-Ddb.password=pass"
-- После прохождения тестов в терминале вводим команду ./gradlew allureServe
-  Автоматически откроется браузер с генерированным отчетом Allure Report.
-  После работы с отчетом Allure нажимаем Ctl + C
+
 
