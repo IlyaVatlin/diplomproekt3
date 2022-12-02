@@ -10,27 +10,32 @@
 Ссылка на дипломный проект https://github.com/netology-code/qa-diploma
 
 ## Запуск приложения
+Для запуска проекта на ПК должны быть установлены:
 
-## Подготовительный этап
-- Установить и запустить IntelliJ IDEA;
-- Установать Node.js;
-- Установить Docker Desktop;
-
- в Docker 
-1) клонировать репозиторий с Github git clone 
-
-   в IntelliJ IDEA
-2) Открыть проект в IntelliJ IDEA, открыть терминал (Fn + Alt + F12);
-3) переходим в папку gate-simulator (cd gate-simulator);
-4) запускаем банковский симулятор командой npm start;
-5) открываем в терминале (+) новую вкладку и вводим команду docker-compose up -d --force-recreate;
-6) открываем в терминале (+) новую вкладку и запускаем jar файл командой java -jar aqa-shop.jar.
-7) открываем страницу в Google Chrome http://localhost:9090.
-8) после работы с Docker останавливаем контейнеры docker-compose down
-9) после работы с банковским симулятор в терминале нажимаем Ctl + C
+Intellej IDEA Ultimate
+Java 11
+Docker
+Git
+Склонировать проект на компьютер git clone
 
 
- ## Запуск тестового приложения
-в IDEA 
+Открыть проект в IntelliJ IDEA Ultimate.
 
+Запустить Docker на ПК.
+
+В терминале IDEA выполнить команду docker-compose up
+
+В другой вкладке терминала выполнить команду для запуска приложения на СУБД MySQL java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/app" -jar artifacts/aqa-shop.jar
+
+В другой вкладке теринала выполнить команду для запуска тестов .\gradlew test "-Ddb.url=jdbc:mysql://localhost:3306/app"
+
+После выполнения тестов для просмотра отчетов в другой вкладке терминала выполнить команды .\gradlew allureReport
+
+затем .\gradlew allureServe
+
+Завершить работу плагина Ctrl+C.
+
+Для запуска приложения на СУБД PostgreSQL java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar artifacts/aqa-shop.jar
+
+Тесты запускаются командой в другой вкладке терминала .\gradlew test "-Ddb.url=jdbc:postgresql://localhost:5432/app"
 
