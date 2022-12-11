@@ -1,173 +1,123 @@
-package ru.netology.data;
+package data;
 
 import com.github.javafaker.Faker;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import java.util.Calendar;
 import java.util.Random;
 
 public class DataHelper {
-
-    private DataHelper() {
+    private DataHelper(){
+    }
+    private static String getMonth() {
+        LocalDate localDate = LocalDate.now();
+        int month = localDate.getMonthValue();
+        return String.format("%02d", month);
     }
 
-
-    public static String generateDateAndPast(int month, String pattern) {
-        return LocalDate.now().plusMonths(month).format(DateTimeFormatter.ofPattern(pattern));
+    private static String getBygoneMonth() {
+        LocalDate localDate = LocalDate.now();
+        int month = localDate.minusMonths(1).getMonthValue();
+        return String.format("%02d", month);
     }
 
-    public static String generatePastYear() {
-        return generateDateAndPast(12, "YY");
+    private static String getYear() {
+        DateFormat df = new SimpleDateFormat("yy");
+        return df.format(Calendar.getInstance().getTime());
     }
 
-    public static String generateValidYear() {
-        return generateDateAndPast(15, "YY");
+    private static String getBygoneYear() {
+        LocalDate localDate = LocalDate.now();
+        int year = localDate.minusYears(1).getYear();
+        return String.format("%02d", year);
     }
 
-    public static String generateValidMonth() {
-        return generateDateAndPast(6, "MM");
-    }
-
-    public static String generateInValidYear() {
-        return generateDateAndPast(72, "YY");
-    }
-
-    public static String generateValidCardOwner() {
-        Faker faker = new Faker(new Locale("en"));
+    private static String getName() {
+        Faker faker = new Faker();
         return faker.name().firstName() + " " + faker.name().lastName();
     }
 
-    public static String generateInValidCardOwner() {
-        Faker faker = new Faker(new Locale("ru"));
-        return faker.name().fullName();
+    private static String getCvc() {
+        Random random = new Random();
+        int cvc = random.nextInt((1000 - 1));
+        return String.format("%03d", cvc);
     }
 
-    public static String generateCVC() {
-        Random rnd = new Random();
-        int cvc = rnd.nextInt(900) + 100;
-        return String.valueOf(cvc);
+    private static String getApprovedCardNumber() {
+        return "4444 4444 4444 4441";
     }
 
-    public static String generateOneDigitMonth() {
-        Random rnd = new Random();
-        int mon = rnd.nextInt(9) + 1;
-        return String.valueOf(mon);
+    private static String getDeclinedCardNumber() {
+        return "4444 4444 4444 4442";
     }
 
-    public static CardInfo getApprovedCardInfo() {
-        return new CardInfo("4444444444444441", generateValidMonth(), generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getNonExistentCard() {
+        return new CardInfo ("7777 7777 7777 7777", getMonth(), getYear(), getName(), getCvc());
     }
 
-    public static CardInfo getDeclinedCardInfo() {
-        return new CardInfo("4444444444444442", generateValidMonth(), generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getApprovedCard() {
+        return new CardInfo(getApprovedCardNumber(), getMonth(), getYear(), getName(), getCvc());
     }
 
-    public static CardInfo getAllEmptyFields() {
-        return new CardInfo("", "", "", "", "");
+    public static CardInfo getDeclinedCard() {
+        return new CardInfo(getDeclinedCardNumber(), getMonth(), getYear(), getName(), getCvc());
     }
 
-    public static CardInfo getEmptyCardNumber() {
-        return new CardInfo("", generateValidMonth(), generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getShortNameInOwnerApprovedCard() {
+        return new CardInfo(getApprovedCardNumber(), getMonth(), getYear(), "In", getCvc());
     }
 
-    public static CardInfo getShotCardNumber() {
-        return new CardInfo("444444444444441", generateValidMonth(), generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getShortNameInOwnerDeclinedCard() {
+        return new CardInfo(getDeclinedCardNumber(), getMonth(), getYear(), "In", getCvc());
     }
 
-    public static CardInfo getEnAlphabCardNumber() {
-        return new CardInfo("lkdfbhytasvbnjdf", generateValidMonth(), generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getEmptyForm() {
+        return new CardInfo();
     }
 
-    public static CardInfo getRussAlphabCardNumber() {
-        return new CardInfo("пвпикелтьясмцува", generateValidMonth(), generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getInvalidMonthApprovedCard() {
+        return new CardInfo(getApprovedCardNumber(), "13", getYear(), getName(), getCvc());
     }
 
-    public static CardInfo getSymbolCardNumber() {
-        return new CardInfo("@#$%^&*(><.,?/!+", generateValidMonth(), generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getInvalidMonthDeclinedCard() {
+        return new CardInfo(getDeclinedCardNumber(), "13", getYear(), getName(), getCvc());
     }
 
-    public static CardInfo getIncorrectCardNumber() {
-        return new CardInfo("123456789876543", generateValidMonth(), generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getBygoneMonthApprovedCard() {
+        return new CardInfo(getApprovedCardNumber(), getBygoneMonth(), getYear(), getName(), getCvc());
     }
 
-    public static CardInfo getInvalidMonth() {
-        return new CardInfo("4444444444444441", "13", generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getBygoneMonthDeclinedCard() {
+        return new CardInfo(getDeclinedCardNumber(), getBygoneMonth(), getYear(), getName(), getCvc());
     }
 
-    public static CardInfo getEnAlphabMonth() {
-        return new CardInfo("4444444444444441", "en", generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getIncompleteField() {
+        return new CardInfo("4444 4444 4444 444", "1", "2", "A", "11");
     }
 
-    public static CardInfo getRusAlphabMonth() {
-        return new CardInfo("4444444444444441", "ру", generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getCharactersInFieldOwnerApprovedCard() {
+        return new CardInfo(getApprovedCardNumber(), getMonth(), getYear(), "<#%^*&$@>", getCvc());
     }
 
-    public static CardInfo getSymbMonth() {
-        return new CardInfo("4444444444444441", "&&", generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getCharactersInFieldOwnerDeclinedCard() {
+        return new CardInfo(getDeclinedCardNumber(), getMonth(), getYear(), "<#%^*&$@>", getCvc());
     }
 
-    public static CardInfo getZeroMonth() {
-        return new CardInfo("4444444444444441", "00", generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getOneCharacterInFieldOwnerApprovedCard() {
+        return new CardInfo(getApprovedCardNumber(), getMonth(), getYear(), "I", getCvc());
     }
 
-    public static CardInfo getOntDigitMonth() {
-        return new CardInfo("4444444444444441", generateOneDigitMonth(), generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getOneCharacterInFieldOwnerDeclinedCard() {
+        return new CardInfo(getDeclinedCardNumber(), getMonth(), getYear(), "I", getCvc());
     }
 
-    public static CardInfo getEmptyMonth() {
-        return new CardInfo("4444444444444441", "", generateValidYear(), generateValidCardOwner(), generateCVC());
+    public static CardInfo getBygoneYearApprovedCard() {
+        return new CardInfo(getApprovedCardNumber(), getMonth(), getBygoneYear(), getName(), getCvc());
     }
 
-    public static CardInfo getEmptyYear() {
-        return new CardInfo("4444444444444441", generateValidMonth(), "", generateValidCardOwner(), generateCVC());
-    }
-
-    public static CardInfo getIncorrectYear() {
-        return new CardInfo("4444444444444441", generateValidMonth(), generateInValidYear(), generateValidCardOwner(), generateCVC());
-    }
-
-    public static CardInfo getPastYear() {
-        return new CardInfo("4444444444444441", generateValidMonth(), generatePastYear(), generateValidCardOwner(), generateCVC());
-    }
-
-    public static CardInfo getEnAlphabYear() {
-        return new CardInfo("4444444444444441", generateValidMonth(), "aj", generateValidCardOwner(), generateCVC());
-    }
-
-    public static CardInfo getRusAlphabYear() {
-        return new CardInfo("4444444444444441", generateValidMonth(), "пф", generateValidCardOwner(), generateCVC());
-    }
-
-    public static CardInfo getEmptyCardOwner() {
-        return new CardInfo("4444444444444441", generateValidMonth(), generateValidYear(), "", generateCVC());
-    }
-
-    public static CardInfo getIncorrectCardOwner() {
-        return new CardInfo("4444444444444441", generateValidMonth(), generateValidYear(), generateInValidCardOwner(), generateCVC());
-    }
-
-    public static CardInfo getSymbolsCardOwner() {
-        return new CardInfo("4444444444444441", generateValidMonth(), generateValidYear(), "!@#$%^& *()><}{", generateCVC());
-    }
-
-    public static CardInfo getNumericCardOwner() {
-        return new CardInfo("4444444444444441", generateValidMonth(), generateValidYear(), "98745321 23165487", generateCVC());
-    }
-
-    public static CardInfo getEmptyCvc() {
-        return new CardInfo("4444444444444441", generateValidMonth(), generateValidYear(), generateValidCardOwner(), "");
-    }
-
-    public static CardInfo getTwoDigitCvc() {
-        return new CardInfo("4444444444444441", generateValidMonth(), generateValidYear(), generateValidCardOwner(), "54");
-    }
-
-    public static CardInfo getOneDigitCvc() {
-        return new CardInfo("4444444444444441", generateValidMonth(), generateValidYear(), generateValidCardOwner(), "9");
+    public static CardInfo getBygoneYearDeclinedCard() {
+        return new CardInfo(getApprovedCardNumber(), getMonth(), getBygoneYear(), getName(), getCvc());
     }
 }
-
-
-
-
