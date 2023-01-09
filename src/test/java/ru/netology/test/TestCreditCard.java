@@ -1,11 +1,11 @@
 package ru.netology.test;
 
-import Page.BuyWithCard;
-import Page.BuyWithCredit;
-import Page.StartPage;
+import ru.netology.page.BuyWithCard;
+import ru.netology.page.BuyWithCredit;
+import ru.netology.page.StartPage;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import data.DataHelper;
-import data.SQL;
+import ru.netology.data.DataHelper;
+import ru.netology.data.SQL;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
 import org.junit.jupiter.api.AfterAll;
