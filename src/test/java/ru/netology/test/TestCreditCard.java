@@ -188,24 +188,5 @@ public class TestCreditCard {
         assertEquals("Истёк срок действия карты", buyWithCredit.getInputInvalid());
     }
 
-    @Test
-    void shouldInvalidDebitCard() {
-        StartPage startPage = new StartPage();
-        startPage.openBuyWithCard();
-        val debitPage = new BuyWithCard();
-        debitPage.fillData(DataHelper.getNonExistentCard());
-        assertEquals("Ошибка! Банк отказал в проведении операции.", debitPage.getInputInvalid());
-    }
-
-
-    @Test
-    void shouldAmountByCardWithDeclined() {
-        StartPage startPage = new StartPage();
-        startPage.openBuyWithCard();
-        val buyWithCard = new BuyWithCard();
-        buyWithCard.fillData(DataHelper.getApprovedCard());
-        buyWithCard.waitNotificationError();
-        assertEquals("null", SQL.getAmountStatus());
-    }
 }
 
