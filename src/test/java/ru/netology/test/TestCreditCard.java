@@ -1,4 +1,4 @@
-package tests;
+package ru.netology.test;
 
 import Page.BuyWithCard;
 import Page.BuyWithCredit;
