@@ -1,7 +1,7 @@
 package ru.netology.page;
 
 import com.codeborne.selenide.SelenideElement;
-import data.CardInfo;
+import ru.netology.data.CardInfo;
 
 import java.time.Duration;
 
