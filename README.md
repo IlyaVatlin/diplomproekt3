@@ -15,7 +15,6 @@
 >> - Git
 >> 
 >> Склонировать проект на компьютер 
-  `git clone https://github.com/AvLina/Diploma_QA.git`
 
 ### Запуск приложения
 >> Открыть проект в IntelliJ IDEA Ultimate.
