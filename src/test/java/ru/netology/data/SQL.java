@@ -8,6 +8,8 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import static java.sql.DriverManager.getConnection;
+
 public class SQL {
     static String url = System.getProperty("db.url");
     static String user = System.getProperty("db.user");
@@ -20,7 +22,7 @@ public class SQL {
         val deleteCreditRequestEntity = "DELETE FROM credit_request_entity";
         val runner = new QueryRunner();
         try (
-                val conn = DriverManager.getConnection(url, user, password
+                val conn = getConnection(url, user, password
                 );
         ) {
             runner.update(conn, deleteOrderEntity);
@@ -33,7 +35,7 @@ public class SQL {
         String result = "";
         var runner = new QueryRunner();
         try
-                (var conn = DriverManager.getConnection(url, user, password)) {
+                (var conn = getConnection(url, user, password)) {
 
             result = runner.query(conn, query, new ScalarHandler<String>());
             System.out.println(result);
@@ -45,20 +47,44 @@ public class SQL {
     public static int getAmountStatus() {
         var runner = new QueryRunner();
         try
-                (var conn = DriverManager.getConnection(url, user, password)) {
+                (var conn = getConnection(url, user, password)) {
             val amount = "SELECT amount FROM payment_entity";
             return runner.query(conn, amount, new ScalarHandler<>());
         }
     }
 
-    public static String getDebitStatus() throws SQLException {
-        val statusSQL = "SELECT status FROM payment_entity";
-        return getStatus(statusSQL);
+    public static String getDebitStatus() {
+        val dataSQL = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1;";
+        val runner = new QueryRunner();
+        try (val conn = getConnection()) {
+            return runner.query(conn, dataSQL, new ScalarHandler<String>());
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return null;
     }
 
-    public static String getCreditStatus() throws SQLException {
-        val statusSQL = "SELECT status FROM credit_request_entity";
-        return getStatus(statusSQL);
+    public static String getCreditStatus() {
+        val dataSQL = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
+        val runner = new QueryRunner();
+        try (val conn = getConnection()) {
+            return runner.query(conn, dataSQL, new ScalarHandler<String>());
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return null;
     }
 
+    public static void clearTables() {
+        val cleanCredit = "DELETE FROM credit_request_entity;";
+        val cleanOrder = "DELETE FROM order_entity;";
+        val cleanPayment = "DELETE FROM payment_entity";
+        val runner = new QueryRunner();
+        try (val conn = getConnection()) {
+            runner.update(conn, cleanCredit);
+            runner.update(conn, cleanOrder);
+            runner.update(conn, cleanPayment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 }
