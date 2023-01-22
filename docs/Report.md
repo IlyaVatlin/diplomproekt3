@@ -5,13 +5,14 @@ ____________________________________________
 >- Тестирование проведено для двух БД - MySQL и PostgreSQL.
 
 ### Количество тест-кейсов
->**Всего** 52 тест-кейсов, из них:
->- passed status 32 тест-кейсов - 61,53%
->- failed status 20 тест-кейсов - 38,46%
+>**Всего** 36 тест-кейсов, из них:
+>- passed status 20 тест-кейсов - 55,55%
+>- failed status 16 тест-кейсов - 44,44%
 
 ### отчет Allure
+![img123](https://user-images.githubusercontent.com/107053785/213918630-4c9479a9-355e-4dc5-a214-4e18169b96bd.png)
 
-<img width="1364" alt="ALLURE REPORT" src="https://user-images.githubusercontent.com/107053785/212544093-0a2221d6-4f65-418e-a57a-cac03254b887.png">
+
 
 
 ### Рекомендации
