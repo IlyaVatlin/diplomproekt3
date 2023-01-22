@@ -1,5 +1,6 @@
 package ru.netology.test;
 
+import lombok.SneakyThrows;
 import ru.netology.page.BuyWithCard;
 import ru.netology.page.BuyWithCredit;
 import ru.netology.page.StartPage;
@@ -40,8 +41,9 @@ public class TestCreditCard {
     }
 
 
+
     @Test
-    void shouldCreditByCardWithStatusApproved() throws SQLException {
+    void shouldCreditByCardWithStatusApproved() {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCredit();
         buyWithCredit.fillData(DataHelper.getApprovedCard());
@@ -51,7 +53,7 @@ public class TestCreditCard {
     }
 
     @Test
-    void shouldCreditByCardWithStatusDecline() throws SQLException {
+    void shouldCreditByCardWithStatusDecline() {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCredit();
         buyWithCredit.fillData(DataHelper.getDeclinedCard());
