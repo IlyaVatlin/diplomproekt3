@@ -25,10 +25,10 @@ public class TestDebitCard {
     }
 
     @BeforeEach
-    public void setUpEach() throws SQLException {
+    public void setUpEach() {
         String url = System.getProperty("sut.url");
         open(url);
-        SQL.clearData();
+        SQL.clearTables();
     }
 
     @AfterAll
@@ -38,7 +38,7 @@ public class TestDebitCard {
     }
 
     @Test
-    void shouldDebitByCardWithApproved() throws SQLException {
+    void shouldDebitByCardWithApproved()  {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCredit();
         buyWithCard.fillData(DataHelper.getApprovedCard());
@@ -47,7 +47,7 @@ public class TestDebitCard {
     }
 
     @Test
-    void shouldDebitByCardWithDecline() throws SQLException {
+    void shouldDebitByCardWithDecline()  {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCredit();
         buyWithCard.fillData(DataHelper.getDeclinedCard());
