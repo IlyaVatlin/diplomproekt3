@@ -18,6 +18,9 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestDebitCard {
+    private BuyWithCard buyWithCard;
+    private BuyWithCard debitPage;
+    
     @BeforeAll
     static void setUpAll() {
 
