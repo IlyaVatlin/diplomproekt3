@@ -25,7 +25,7 @@
 `docker-compose up`
 >>
 >> В другой вкладке терминала выполнить команду для запуска приложения на СУБД MySQL
-`java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/app" -jar artifacts/aqa-shop.jar`
+`java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/app" -jar .\aqa-shop.jar`
 >>
 >> В другой вкладке теринала выполнить команду для запуска тестов
 `.\gradlew test "-Ddb.url=jdbc:mysql://localhost:3306/app"`
@@ -39,7 +39,7 @@
 >> Завершить работу плагина Ctrl+C.
 >> 
 >> Для запуска приложения на СУБД PostgreSQL
-`java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar artifacts/aqa-shop.jar`
+`java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar .\aqa-shop.jar`
 >>
 >> Тесты запускаются командой в другой вкладке терминала
 `.\gradlew test "-Ddb.url=jdbc:postgresql://localhost:5432/app"`
