@@ -56,7 +56,7 @@ public class SQL {
     public static String getDebitStatus() {
         val dataSQL = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1;";
         val runner = new QueryRunner();
-        try (val conn = getConnection()) {
+        try (val conn = getConnection(url, user, password)) {
             return runner.query(conn, dataSQL, new ScalarHandler<String>());
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -67,7 +67,7 @@ public class SQL {
     public static String getCreditStatus() {
         val dataSQL = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
         val runner = new QueryRunner();
-        try (val conn = getConnection()) {
+        try (val conn = getConnection(url, user, password)) {
             return runner.query(conn, dataSQL, new ScalarHandler<String>());
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -80,11 +80,12 @@ public class SQL {
         val cleanOrder = "DELETE FROM order_entity;";
         val cleanPayment = "DELETE FROM payment_entity";
         val runner = new QueryRunner();
-        try (val conn = getConnection()) {
+        try (val conn = getConnection(url, user, password)) {
             runner.update(conn, cleanCredit);
             runner.update(conn, cleanOrder);
             runner.update(conn, cleanPayment);
         } catch (Exception e) {
             e.printStackTrace();
         }
+}
 }
