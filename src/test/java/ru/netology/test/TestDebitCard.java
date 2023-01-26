@@ -80,7 +80,7 @@ public class TestDebitCard {
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getEmptyForm());
         debitPage.getInputInvalid();
-        assertEquals("Неверный формат", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -88,7 +88,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getInvalidMonthApprovedCard());
-        assertEquals("Неверно указан срок действия карты", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -96,7 +96,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getInvalidMonthDeclinedCard());
-        assertEquals("Неверно указан срок действия карты", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getBygoneMonthApprovedCard());
-        assertEquals("Неверно указан срок действия карты", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -112,7 +112,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getBygoneMonthDeclinedCard());
-        assertEquals("Неверно указан срок действия карты", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getIncompleteField());
-        assertEquals("Неверный формат", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -128,7 +128,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getCharactersInFieldOwnerApprovedCard());
-        assertEquals("Неверный формат", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -136,7 +136,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getCharactersInFieldOwnerDeclinedCard());
-        assertEquals("Неверный формат", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -144,7 +144,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getCharactersInFieldOwnerApprovedCard());
-        assertEquals("Неверный формат", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -152,7 +152,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getOneCharacterInFieldOwnerDeclinedCard());
-        assertEquals("Неверный формат", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -160,7 +160,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getBygoneYearApprovedCard());
-        assertEquals("Истёк срок действия карты", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -168,7 +168,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getBygoneYearDeclinedCard());
-        assertEquals("Истёк срок действия карты", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
     @Test
@@ -176,7 +176,7 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getNonExistentCard());
-        assertEquals("Ошибка! Банк отказал в проведении операции.", debitPage.getInputInvalid());
+        assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
 
