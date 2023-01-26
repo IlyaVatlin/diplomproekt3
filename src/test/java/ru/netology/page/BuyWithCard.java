@@ -41,8 +41,5 @@ public class BuyWithCard {
         codeSecurity.setValue(card.getCvc());
         button.click();
     }
-    public String getInputInvalid() {
-
-        return inputInvalid.getText();
-    }
+   
 }
