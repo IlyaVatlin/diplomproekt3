@@ -43,6 +43,17 @@ public class SQL {
         }
     }
 
+    public static Long getRowsDebitPurchase() {
+        val getRows = "SELECT COUNT(*) FROM payment_entity";
+        QueryRunner runner = new QueryRunner();
+        try (val conn = getConnection(url, user, password)) {
+            val rowsCount = runner.query(conn, getRows, new ScalarHandler<Long>());
+            return rowsCount;
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return null;
+        
     @SneakyThrows
     public static int getAmountStatus() {
         var runner = new QueryRunner();
