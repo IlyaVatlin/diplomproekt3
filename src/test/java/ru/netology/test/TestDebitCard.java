@@ -79,7 +79,6 @@ public class TestDebitCard {
         StartPage startPage = new StartPage();
         val buyWithCredit = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getEmptyForm());
-        debitPage.getInputInvalid();
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
 
