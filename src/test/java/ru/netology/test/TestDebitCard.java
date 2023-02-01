@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestDebitCard {
     private BuyWithCard buyWithCard;
     private BuyWithCard debitPage;
-    
+
     @BeforeAll
     static void setUpAll() {
 
@@ -43,7 +43,7 @@ public class TestDebitCard {
     @Test
     void shouldDebitByCardWithApproved()  {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val buyWithCard = startPage.openBuyWithCard();
         buyWithCard.fillData(DataHelper.getApprovedCard());
         buyWithCard.waitNotificationOk();
         assertEquals("APPROVED", SQL.getDebitStatus());
@@ -52,7 +52,7 @@ public class TestDebitCard {
     @Test
     void shouldDebitByCardWithDecline()  {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val buyWithCard = startPage.openBuyWithCard();
         buyWithCard.fillData(DataHelper.getDeclinedCard());
         buyWithCard.waitNotificationError();
         assertEquals("DECLINED", SQL.getDebitStatus());
@@ -61,7 +61,7 @@ public class TestDebitCard {
     @Test
     void shouldShortNameInOwnerApproved() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val buyWithCard = startPage.openBuyWithCard();
         buyWithCard.fillData(DataHelper.getShortNameInOwnerApprovedCard());
         buyWithCard.waitNotificationOk();
     }
@@ -182,7 +182,7 @@ public class TestDebitCard {
     @Test
     void shouldAmountByCardWithApproved() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val buyWithCard = startPage.openBuyWithCard();
         buyWithCard.fillData(DataHelper.getApprovedCard());
         buyWithCard.waitNotificationOk();
         assertEquals("45000", SQL.getAmountStatus());
