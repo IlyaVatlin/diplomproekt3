@@ -53,7 +53,7 @@ public class SQL {
             sqlException.printStackTrace();
         }
         return null;
-        
+    }
     @SneakyThrows
     public static int getAmountStatus() {
         var runner = new QueryRunner();
