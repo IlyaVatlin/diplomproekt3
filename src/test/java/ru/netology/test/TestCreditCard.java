@@ -29,9 +29,8 @@ public class TestCreditCard {
 
     @BeforeEach
     public void setUpEach() {
-        String url = System.getProperty("sut.url");
-        open(url);
-//        SQL.clearData();
+        SQL.clearTables();
+        open("http://localhost:8080");
     }
 
     @AfterAll
