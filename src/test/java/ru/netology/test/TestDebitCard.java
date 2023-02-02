@@ -68,7 +68,7 @@ public class TestDebitCard {
     @Test
     void shouldShortNameInOwnerDeclined() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getShortNameInOwnerDeclinedCard());
         debitPage.waitNotificationError();
     }
@@ -76,7 +76,7 @@ public class TestDebitCard {
     @Test
     void shouldInvalidFieldMessageEmptyForm() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getEmptyForm());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -84,7 +84,7 @@ public class TestDebitCard {
     @Test
     void shouldInvalidFieldMessageInvalidMonthApproved() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getInvalidMonthApprovedCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -92,7 +92,7 @@ public class TestDebitCard {
     @Test
     void shouldInvalidFieldMessageInvalidMonthDeclined() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getInvalidMonthDeclinedCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -100,7 +100,7 @@ public class TestDebitCard {
     @Test
     void shouldInvalidFieldMessageBygoneMonthApproved() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getBygoneMonthApprovedCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -108,7 +108,7 @@ public class TestDebitCard {
     @Test
     void shouldInvalidFieldMessageBygoneMonthDeclined() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getBygoneMonthDeclinedCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -116,7 +116,7 @@ public class TestDebitCard {
     @Test
     void shouldInvalidFieldMessageIncompleteField() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getIncompleteField());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -124,7 +124,7 @@ public class TestDebitCard {
     @Test
     void shouldCharactersInFieldOwnerApproved() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getCharactersInFieldOwnerApprovedCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -132,7 +132,7 @@ public class TestDebitCard {
     @Test
     void shouldCharactersInFieldOwnerDeclined() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getCharactersInFieldOwnerDeclinedCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -140,7 +140,7 @@ public class TestDebitCard {
     @Test
     void shouldOneCharacterInFieldOwnerApproved() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getCharactersInFieldOwnerApprovedCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -148,7 +148,7 @@ public class TestDebitCard {
     @Test
     void shouldOneCharacterInFieldOwnerDeclined() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getOneCharacterInFieldOwnerDeclinedCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -156,7 +156,7 @@ public class TestDebitCard {
     @Test
     void shouldInvalidFieldMessageBygoneYearApproved() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getBygoneYearApprovedCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -164,7 +164,7 @@ public class TestDebitCard {
     @Test
     void shouldInvalidFieldMessageBygoneYearDeclined() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getBygoneYearDeclinedCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
@@ -172,7 +172,7 @@ public class TestDebitCard {
     @Test
     void shouldInvalidDebitCard() {
         StartPage startPage = new StartPage();
-        val buyWithCredit = startPage.openBuyWithCard();
+        val debitPage = startPage.openBuyWithCard();
         debitPage.fillData(DataHelper.getNonExistentCard());
         assertEquals(0, SQL.getRowsDebitPurchase());
     }
